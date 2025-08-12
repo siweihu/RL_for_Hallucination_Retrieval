@@ -1,0 +1,27 @@
+python3 run.py \
+        --task "DSI" \
+        --model_name "./t5-base" \
+        --run_name "simple test" \
+        --max_length 32 \
+        --train_file data/shuffled_doc_train.json \
+        --valid_file data/doc_dev_for_doc_train_split.json \
+        --output_dir "models/checkpoint" \
+        --learning_rate 0.0005 \
+        --warmup_steps 100 \
+        --per_device_train_batch_size 512 \
+        --per_device_eval_batch_size 128 \
+        --evaluation_strategy steps \
+        --eval_steps 2000 \
+        --max_steps 10000 \
+        --save_strategy steps \
+        --dataloader_num_workers 10 \
+        --save_steps 4000 \
+        --save_total_limit 2 \
+        --load_best_model_at_end \
+        --gradient_accumulation_steps 1 \
+        --report_to wandb \
+        --logging_steps 100 \
+        --dataloader_drop_last False \
+        --metric_for_best_model Hits@10 \
+        --greater_is_better True
+
